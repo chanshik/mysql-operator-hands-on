@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    v1alpha1.mysql.oracle.com/cluster: mysql-cluster
+  name: mysql
+  namespace: database
+spec:
+  ports:
+  - port: 3306
+    protocol: TCP
+    targetPort: 3306
+    nodePort: 30306
+  selector:
+    v1alpha1.mysql.oracle.com/cluster: mysql-cluster
+    v1alpha1.mysql.oracle.com/role: primary
+  type: NodePort
